@@ -28,6 +28,6 @@ public class UserResource {
 
     @GetMapping("/id/{id}")
     public User getId(@PathVariable("id") final Integer id) {
-        return userRepository.findOne(id);
+        return userRepository.getOne(id);
     }
 }

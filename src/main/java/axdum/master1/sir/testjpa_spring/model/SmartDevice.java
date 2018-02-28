@@ -7,7 +7,7 @@ import javax.persistence.*;
 @DiscriminatorColumn(name = "TYPE_SMARTDEVICE")
 @DiscriminatorValue("SD")
 public class SmartDevice {
-    private Long id;
+    private Integer id;
     private String name;
     private Double hourOnPerDay;
     private int dayOnPerYear;
@@ -54,7 +54,7 @@ public class SmartDevice {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -63,7 +63,7 @@ public class SmartDevice {
      *
      * @param id l'ID de l'appareil intelligent
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

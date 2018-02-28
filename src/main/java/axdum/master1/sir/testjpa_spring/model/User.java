@@ -1,13 +1,16 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "user", catalog = "jpaspring")
 public class User {
-    private Long id;
+    private Integer id;
     private String pseudo;
     private String firstName;
     private String name;
@@ -104,7 +107,7 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -113,7 +116,7 @@ public class User {
      *
      * @param id l'ID de la personne
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

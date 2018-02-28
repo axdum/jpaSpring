@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Entity
 public class Home {
-    private Long id;
+    private Integer id;
     private String name;
     private int size;
     private int nbRooms;
@@ -82,7 +82,7 @@ public class Home {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -91,7 +91,7 @@ public class Home {
      *
      * @param id l'ID de la résidence
      */
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
