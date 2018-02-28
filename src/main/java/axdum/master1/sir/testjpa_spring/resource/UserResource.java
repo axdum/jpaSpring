@@ -1,13 +1,10 @@
 package axdum.master1.sir.testjpa_spring.resource;
 
 import axdum.master1.sir.testjpa_spring.model.*;
-import axdum.master1.sir.testjpa_spring.repository.UserRepository;
 import axdum.master1.sir.testjpa_spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
+
 
 import java.util.List;
 
@@ -44,7 +41,7 @@ public class UserResource {
      * @param id the id of user
      * @return the user
      */
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public User getId(@PathVariable("id") Long id) {
         return userService.getUserById(id);
     }
