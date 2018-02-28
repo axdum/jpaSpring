@@ -19,6 +19,16 @@ public class UserResource {
      *
      * @return the list of all users
      */
+    @GetMapping("/populate")
+    public void populate() {
+        userService.populate();
+    }
+
+    /**
+     * Get all users list.
+     *
+     * @return the list of all users
+     */
     @GetMapping("/all")
     public List<User> getAll() {
         return userService.getAllUsers();
@@ -63,7 +73,7 @@ public class UserResource {
      * @param user the user to update
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateReservation(@RequestBody User user,@PathVariable("id") Long id) {
+    public void updateReservation(@RequestBody User user, @PathVariable("id") Long id) {
         userService.updateUser(id, user);
     }
 }

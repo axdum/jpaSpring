@@ -1,13 +1,14 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_SMARTDEVICE")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "smartdevice", catalog = "jpaspring")
 @DiscriminatorValue("SD")
 public class SmartDevice {
@@ -16,7 +17,6 @@ public class SmartDevice {
     private Double hourOnPerDay;
     private int dayOnPerYear;
     private int watts;
-    private int annualCons;
 
     /**
      * Constructeur SmartDevice sans params.

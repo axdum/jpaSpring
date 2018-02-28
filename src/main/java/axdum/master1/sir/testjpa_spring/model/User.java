@@ -1,13 +1,13 @@
 package axdum.master1.sir.testjpa_spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "id")
 @Table(name = "user", catalog = "jpaspring")
 public class User {
     private Long id;
@@ -15,8 +15,11 @@ public class User {
     private String firstName;
     private String name;
     private String mail;
+    @JsonBackReference
     private List<Home> homes;
+    @JsonIgnore
     private List<User> friends;
+    @JsonBackReference
     private List<ElectronicDevice> electronicDevices;
 
     /**
@@ -116,7 +119,7 @@ public class User {
      *
      * @return le pseudo de la personn
      */
-    @Column(unique=true)
+    @Column(unique = true)
     public String getPseudo() {
         return pseudo;
     }
@@ -189,7 +192,7 @@ public class User {
      *
      * @return la liste des résidences de la personne
      */
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "owner", cascade=CascadeType.ALL)
     public List<Home> getHomes() {
         return homes;
     }
@@ -208,7 +211,7 @@ public class User {
      *
      * @return la liste des amis de la personne
      */
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<User> getFriends() {
         return friends;
     }

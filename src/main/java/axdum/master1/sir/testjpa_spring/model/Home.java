@@ -1,6 +1,6 @@
 package axdum.master1.sir.testjpa_spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,14 +8,15 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "home", catalog = "jpaspring")
 public class Home {
     private Long id;
     private String name;
     private int size;
     private int nbRooms;
+    @JsonManagedReference
     private User owner;
+    @JsonBackReference
     private List<Heater> heaters;
 
     /**
@@ -164,7 +165,7 @@ public class Home {
      *
      * @return la liste de radiateurs de la résidence
      */
-    @OneToMany(mappedBy = "home", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "home", cascade=CascadeType.ALL)
     public List<Heater> getHeaters() {
         return heaters;
     }

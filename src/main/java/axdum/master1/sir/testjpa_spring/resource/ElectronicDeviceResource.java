@@ -58,7 +58,7 @@ public class ElectronicDeviceResource {
     /**
      * Update the ElectronicDevice.
      *
-     * @param id     the id of the ElectronicDevice to update
+     * @param id               the id of the ElectronicDevice to update
      * @param electronicDevice the ElectronicDevice to update
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

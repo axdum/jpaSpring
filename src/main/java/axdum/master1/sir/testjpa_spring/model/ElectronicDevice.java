@@ -1,5 +1,8 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -9,6 +12,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("ELECTRONIC_DEVICE")
 @Table(name = "user", catalog = "jpaspring")
 public class ElectronicDevice extends SmartDevice {
+    @JsonManagedReference
     private User owner;
 
     /**
@@ -21,18 +25,13 @@ public class ElectronicDevice extends SmartDevice {
     /**
      * Constructeur ElectronicDevice avec propriétaire renseigné.
      *
-     * @param name
-     *          le nom de l'appareil électronique
-     * @param hourOnPerDay
-     *          le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     *          électronique
-     * @param dayOnPerYear
-     *          le nombre de jours de fonctionnement par an de l'appareil
-     *          électronique
-     * @param watts
-     *          la puissance en watts de l'appareil électronique
-     * @param owner
-     *          le propriétaire de l'appareil électronique
+     * @param name         le nom de l'appareil électronique
+     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour de l'appareil
+     *                     électronique
+     * @param dayOnPerYear le nombre de jours de fonctionnement par an de l'appareil
+     *                     électronique
+     * @param watts        la puissance en watts de l'appareil électronique
+     * @param owner        le propriétaire de l'appareil électronique
      */
     public ElectronicDevice(String name, Double hourOnPerDay, int dayOnPerYear, int watts, User owner) {
         super(name, hourOnPerDay, dayOnPerYear, watts);
@@ -42,16 +41,12 @@ public class ElectronicDevice extends SmartDevice {
     /**
      * Constructeur ElectronicDevice sans propriétaire.
      *
-     * @param name
-     *          le nom de l'appareil électronique
-     * @param hourOnPerDay
-     *          le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     *          électronique
-     * @param dayOnPerYear
-     *          le nombre de jours de fonctionnement par an de l'appareil
-     *          électronique
-     * @param watts
-     *          la puissance en watts de l'appareil électronique
+     * @param name         le nom de l'appareil électronique
+     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour de l'appareil
+     *                     électronique
+     * @param dayOnPerYear le nombre de jours de fonctionnement par an de l'appareil
+     *                     électronique
+     * @param watts        la puissance en watts de l'appareil électronique
      */
     public ElectronicDevice(String name, Double hourOnPerDay, int dayOnPerYear, int watts) {
         super(name, hourOnPerDay, dayOnPerYear, watts);
@@ -70,8 +65,7 @@ public class ElectronicDevice extends SmartDevice {
     /**
      * Renseigner le proprétaire de l'appareil électronique.
      *
-     * @param owner
-     *          le proprétaire de l'appareil électronique
+     * @param owner le proprétaire de l'appareil électronique
      */
     public void setOwner(User owner) {
         this.owner = owner;

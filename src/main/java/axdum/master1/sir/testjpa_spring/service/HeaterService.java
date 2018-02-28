@@ -53,7 +53,7 @@ public class HeaterService {
     /**
      * Update the Heater.
      *
-     * @param id   the id of the Heater to update
+     * @param id     the id of the Heater to update
      * @param heater the Heater to update
      */
     public void updateHeater(Long id, Heater heater) {
