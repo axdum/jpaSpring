@@ -10,7 +10,7 @@ import java.util.List;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "user", catalog = "jpaspring")
 public class User {
-    private Integer id;
+    private Long id;
     private String pseudo;
     private String firstName;
     private String name;
@@ -98,7 +98,7 @@ public class User {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -107,7 +107,7 @@ public class User {
      *
      * @param id l'ID de la personne
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -116,6 +116,7 @@ public class User {
      *
      * @return le pseudo de la personn
      */
+    @Column(unique=true)
     public String getPseudo() {
         return pseudo;
     }

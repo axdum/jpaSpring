@@ -2,11 +2,12 @@ package axdum.master1.sir.testjpa_spring.resource;
 
 import axdum.master1.sir.testjpa_spring.model.*;
 import axdum.master1.sir.testjpa_spring.repository.UserRepository;
+import axdum.master1.sir.testjpa_spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -14,79 +15,58 @@ import java.util.List;
 @RequestMapping("rest/user")
 public class UserResource {
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
+    /**
+     * Get all users list.
+     *
+     * @return the list of all users
+     */
     @GetMapping("/all")
     public List<User> getAll() {
-        return userRepository.findAll();
+        return userService.getAllUsers();
     }
 
+    /**
+     * Get the user matching the nickname.
+     *
+     * @param nickname the nickname of user
+     * @return the user
+     */
     @GetMapping("/{nickname}")
-    public List<User> getUser(@PathVariable("nickname") final String nickname) {
-        return userRepository.findByName(nickname);
+    public User getUser(@PathVariable("nickname") String nickname) {
+        return userService.getUserByNickname(nickname);
     }
 
-    @GetMapping("/id/{id}")
-    public User getId(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id);
+    /**
+     * Get the user matching the id.
+     *
+     * @param id the id of user
+     * @return the user
+     */
+    @GetMapping("/{id}")
+    public User getId(@PathVariable("id") Long id) {
+        return userService.getUserById(id);
     }
 
-    @GetMapping("/{id}/homes")
-    public List<Home> getHomes(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id).getHomes();
+    /**
+     * Create a new User.
+     *
+     * @param user the new user
+     */
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public void addReservation(@RequestBody User user) {
+        userService.addUser(user);
     }
 
-    @GetMapping("/{id}/friends")
-    public List<User> getFriends(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id).getFriends();
-    }
-/*
-    @GetMapping("/{id}/smartdevices")
-    public List<SmartDevice> getSmartDevices(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id).getSmartDevices();
-    }
-*/
-    @GetMapping("/{id}/electronic")
-    public List<ElectronicDevice> getElecDevices(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id).getElectronicDevices();
-    }
-/*
-    @GetMapping("/{id}/heaters")
-    public List<Heater> getHeaters(@PathVariable("id") final Integer id) {
-        return userRepository.getOne(id).getHeaters();
-    }
-*/
-    @GetMapping("/update/{id}/name/{name}")
-    public User updateName(@PathVariable("id") final Integer id, @PathVariable("name") final String name) {
-
-
-        User user = getId(id);
-        user.setName(name);
-
-        return userRepository.save(user);
-    }
-
-    @GetMapping("/update/{id}/firstname/{firstname}")
-    public User updateFirstName(@PathVariable("id") final Integer id, @PathVariable("firstname") final String firstname) {
-        User user = getId(id);
-        user.setFirstName(firstname);
-
-        return userRepository.save(user);
-    }
-
-    @GetMapping("/update/{id}/nickname/{nickname}")
-    public User updateNickname(@PathVariable("id") final Integer id, @PathVariable("nickname") final String nickname) {
-        User user = getId(id);
-        user.setPseudo(nickname);
-
-        return userRepository.save(user);
-    }
-
-    @GetMapping("/update/{id}/mail/{mail}")
-    public User updateMail(@PathVariable("id") final Integer id, @PathVariable("mail") final String mail) {
-        User user = getId(id);
-        user.setMail(mail);
-
-        return userRepository.save(user);
+    /**
+     * Update the user.
+     *
+     * @param id   the id of the user to update
+     * @param user the user to update
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public void updateReservation(@RequestBody User user,@PathVariable("id") Long id) {
+        userService.updateUser(id, user);
     }
 }

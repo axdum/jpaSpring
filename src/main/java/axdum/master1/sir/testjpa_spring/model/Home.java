@@ -11,7 +11,7 @@ import javax.persistence.*;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "home", catalog = "jpaspring")
 public class Home {
-    private Integer id;
+    private Long id;
     private String name;
     private int size;
     private int nbRooms;
@@ -73,7 +73,7 @@ public class Home {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -82,7 +82,7 @@ public class Home {
      *
      * @param id l'ID de la résidence
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

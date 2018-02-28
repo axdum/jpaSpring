@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name = "smartdevice", catalog = "jpaspring")
 @DiscriminatorValue("SD")
 public class SmartDevice {
-    private Integer id;
+    private Long id;
     private String name;
     private Double hourOnPerDay;
     private int dayOnPerYear;
@@ -53,7 +53,7 @@ public class SmartDevice {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -62,7 +62,7 @@ public class SmartDevice {
      *
      * @param id l'ID de l'appareil intelligent
      */
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
