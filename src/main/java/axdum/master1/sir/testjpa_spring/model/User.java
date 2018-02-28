@@ -46,6 +46,23 @@ public class User {
         friends = new ArrayList<User>();
         electronicDevices = new ArrayList<ElectronicDevice>();
     }
+/*
+    public List<Heater> listHeaters() {
+        ArrayList heaters = new ArrayList<Heater>();
+        for (Home home : this.homes) {
+            heaters.addAll(home.getHeaters());
+        }
+        return heaters;
+    }
+
+    public List<SmartDevice> getSmartDevices(){
+        ArrayList<SmartDevice> smartDevices = new ArrayList<SmartDevice>();
+        for (Home home : this.homes) {
+            smartDevices.addAll(home.getHeaters());
+        }
+        smartDevices.addAll(this.electronicDevices);
+        return smartDevices;
+    }*/
 
     /**
      * Ajouter un ami.
@@ -72,32 +89,6 @@ public class User {
      */
     public void addElectronicDevice(ElectronicDevice electronicDevice) {
         this.electronicDevices.add(electronicDevice);
-    }
-
-    /**
-     * Calcule la consommation annuelle d'électricité de la personne.
-     *
-     * @return la consommation annuelle d'électricité de la personne en kWh
-     */
-    public Double calcAnnualCons() {
-        Double total = calcDevicesAnnualCons();
-        for (Home home : homes) {
-            total += home.calcAnnualCons();
-        }
-        return total;
-    }
-
-    /**
-     * Calcule la consommation annuelle d'électricité de la personne.
-     *
-     * @return la consommation annuelle d'électricité de la personne en kWh
-     */
-    public Double calcDevicesAnnualCons() {
-        Double total = 0.0;
-        for (ElectronicDevice device : electronicDevices) {
-            total += device.calcAnualCons();
-        }
-        return total;
     }
 
     /**

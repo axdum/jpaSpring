@@ -1,11 +1,15 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "home", catalog = "jpaspring")
 public class Home {
     private Integer id;
     private String name;
@@ -51,19 +55,6 @@ public class Home {
         this.name = name;
         this.size = size;
         this.nbRooms = nbRooms;
-    }
-
-    /**
-     * Calcule la consommation annuelle d'électricité de la résidence.
-     *
-     * @return la consommation annuelle d'électricité de la résidence en kWh
-     */
-    public Double calcAnnualCons() {
-        Double total = 0.0;
-        for (Heater heater : heaters) {
-            total = +heater.calcAnualCons();
-        }
-        return total;
     }
 
     /**

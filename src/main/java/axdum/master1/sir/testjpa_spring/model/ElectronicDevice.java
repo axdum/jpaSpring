@@ -3,9 +3,11 @@ package axdum.master1.sir.testjpa_spring.model;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("ELECTRONIC_DEVICE")
+@Table(name = "user", catalog = "jpaspring")
 public class ElectronicDevice extends SmartDevice {
     private User owner;
 

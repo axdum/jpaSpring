@@ -1,10 +1,14 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_SMARTDEVICE")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Table(name = "smartdevice", catalog = "jpaspring")
 @DiscriminatorValue("SD")
 public class SmartDevice {
     private Integer id;
@@ -12,12 +16,16 @@ public class SmartDevice {
     private Double hourOnPerDay;
     private int dayOnPerYear;
     private int watts;
+    private int annualCons;
 
     /**
      * Constructeur SmartDevice sans params.
      */
     public SmartDevice() {
         super();
+        this.hourOnPerDay = 0.0;
+        this.dayOnPerYear = 0;
+        this.watts = 0;
     }
 
     /**
@@ -36,15 +44,6 @@ public class SmartDevice {
         this.hourOnPerDay = hourOnPerDay;
         this.dayOnPerYear = dayOnPerYear;
         this.watts = watts;
-    }
-
-    /**
-     * Calcule la consommation annuelle de l'appareil intelligent.
-     *
-     * @return la consommation annuelle de l'appareil intelligent
-     */
-    public Double calcAnualCons() {
-        return hourOnPerDay * dayOnPerYear * (watts / 1000);
     }
 
     /**
