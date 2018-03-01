@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
 @EnableJpaRepositories(basePackages = "axdum.master1.sir.testjpa_spring.repository")
 @SpringBootApplication
 public class TestjpaSpringApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(TestjpaSpringApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(TestjpaSpringApplication.class, args);
+  }
 }

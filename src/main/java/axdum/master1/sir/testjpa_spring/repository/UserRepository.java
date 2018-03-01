@@ -5,26 +5,26 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    /**
-     * Find an user by his nickname.
-     *
-     * @param pseudo the nickname
-     * @return the matching user
-     */
-    User findFirstByPseudo(String pseudo);
+  /**
+   * Find an user by his nickname.
+   *
+   * @param pseudo the nickname
+   * @return the matching user
+   */
+  User findFirstByPseudo(String pseudo);
 
-    /**
-     * Find an user by Id.
-     *
-     * @param id the Id of the user to find
-     * @return the matching user
-     */
-    User findById(Long id);
+  /**
+   * Find an user by Id.
+   *
+   * @param id the Id of the user to find
+   * @return the matching user
+   */
+  User findById(Long id);
 
-    /**
-     * Delete an user by Id.
-     *
-     * @param id the Id of the user to delete
-     */
-    void deleteById(Long id);
+  /**
+   * Delete an user by Id.
+   *
+   * @param id the Id of the user to delete
+   */
+  void deleteById(Long id);
 }

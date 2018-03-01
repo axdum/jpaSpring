@@ -11,69 +11,67 @@ import java.util.List;
 @RestController
 @RequestMapping("rest/user")
 public class UserResource {
-    @Autowired
-    UserService userService;
+  @Autowired
+  UserService userService;
 
-    /**
-     * Get all users list.
-     *
-     * @return the list of all users
-     */
-    @GetMapping("/populate")
-    public void populate() {
-        userService.populate();
-    }
+  /**
+   * Populate the database.
+   */
+  @GetMapping("/populate")
+  public void populate() {
+    userService.populate();
+  }
 
-    /**
-     * Get all users list.
-     *
-     * @return the list of all users
-     */
-    @GetMapping("/all")
-    public List<User> getAll() {
-        return userService.getAllUsers();
-    }
+  /**
+   * Get all users list.
+   *
+   * @return the list of all users
+   */
+  @GetMapping("/all")
+  public List<User> getAll() {
+    return userService.getAllUsers();
+  }
 
-    /**
-     * Get the user matching the nickname.
-     *
-     * @param nickname the nickname of user
-     * @return the user
-     */
-    @GetMapping("/{nickname}")
-    public User getUser(@PathVariable("nickname") String nickname) {
-        return userService.getUserByNickname(nickname);
-    }
+  /**
+   * Get the user matching the nickname.
+   *
+   * @param nickname the nickname of user
+   * @return the user
+   */
+  @GetMapping("/{nickname}")
+  public User getUser(@PathVariable("nickname") String nickname) {
+    return userService.getUserByNickname(nickname);
+  }
 
-    /**
-     * Get the user matching the id.
-     *
-     * @param id the id of user
-     * @return the user
-     */
-    @GetMapping("/id/{id}")
-    public User getId(@PathVariable("id") Long id) {
-        return userService.getUserById(id);
-    }
+  /**
+   * Get the user matching the id.
+   *
+   * @param id the id of user
+   * @return the user
+   */
+  @GetMapping("/id/{id}")
+  public User getId(@PathVariable("id") Long id) {
+    return userService.getUserById(id);
+  }
 
-    /**
-     * Create a new User.
-     *
-     * @param user the new user
-     */
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public void addReservation(@RequestBody User user) {
-        userService.addUser(user);
-    }
+  /**
+   * Create a new User.
+   *
+   * @param user the new user
+   */
+  @RequestMapping(value = "/create", method = RequestMethod.POST)
+  public void addReservation(@RequestBody User user) {
+    userService.addUser(user);
+  }
 
-    /**
-     * Update the user.
-     *
-     * @param id   the id of the user to update
-     * @param user the user to update
-     */
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updateReservation(@RequestBody User user, @PathVariable("id") Long id) {
-        userService.updateUser(id, user);
-    }
+  /**
+   * Update the user.
+   *
+   * @param id   the id of the user to update
+   * @param user the user to update
+   */
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+  public void updateReservation(@RequestBody User user, @PathVariable("id") Long id) {
+    userService.updateUser(id, user);
+  }
 }
