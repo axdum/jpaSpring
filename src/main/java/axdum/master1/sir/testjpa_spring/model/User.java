@@ -206,7 +206,7 @@ public class User {
    *
    * @return the friends list
    */
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = CascadeType.PERSIST)
   public List<User> getFriends() {
     return friends;
   }
