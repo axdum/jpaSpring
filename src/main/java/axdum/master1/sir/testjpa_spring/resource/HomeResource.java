@@ -19,7 +19,7 @@ public class HomeResource {
    * @return the list of all homes
    */
   @GetMapping("/all")
-  public List<Home> getAll() {
+  public List<Home> getAllHomes() {
     return homeService.getAllHomes();
   }
 
@@ -30,14 +30,14 @@ public class HomeResource {
    * @return the home
    */
   @GetMapping("/id/{id}")
-  public Home getId(@PathVariable("id") Long id) {
+  public Home getHomeById(@PathVariable("id") Long id) {
     return homeService.getHomeById(id);
   }
 
   /**
    * Get homes by name.
    *
-   * @param name home name
+   * @param name home name.
    * @return the home
    */
   @GetMapping("/{name}")
@@ -46,7 +46,7 @@ public class HomeResource {
   }
 
   /**
-   * Create a new home
+   * Create a new home.
    *
    * @param name          home name
    * @param size          home surface (m3)
@@ -63,7 +63,7 @@ public class HomeResource {
   }
 
   /**
-   * Update the home with the given Id.
+   * Update the home with the passed Id.
    *
    * @param id            Id of the home to update
    * @param name          new name

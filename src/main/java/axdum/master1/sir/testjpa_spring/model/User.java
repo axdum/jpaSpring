@@ -1,10 +1,13 @@
 package axdum.master1.sir.testjpa_spring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.*;
 
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.UUIDGenerator.class, property = "id")
@@ -30,16 +33,6 @@ public class User {
     homes = new ArrayList<Home>();
     friends = new ArrayList<User>();
     electronicDevices = new ArrayList<ElectronicDevice>();
-  }
-
-  /**
-   * User Constructor with Id
-   *
-   * @param id
-   */
-  public User(Long id) {
-    super();
-    this.id = id;
   }
 
   /**

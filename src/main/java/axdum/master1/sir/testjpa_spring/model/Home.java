@@ -1,11 +1,11 @@
 package axdum.master1.sir.testjpa_spring.model;
 
-import com.fasterxml.jackson.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "home", catalog = "jpaspring")
@@ -25,14 +25,6 @@ public class Home {
   public Home() {
     super();
     heaters = new ArrayList<Heater>();
-  }
-
-  /**
-   * Home constructor with Id.
-   */
-  public Home(Long id) {
-    super();
-    this.id = id;
   }
 
   /**

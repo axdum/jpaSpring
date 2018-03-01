@@ -1,10 +1,9 @@
 package axdum.master1.sir.testjpa_spring.resource;
 
-import axdum.master1.sir.testjpa_spring.model.*;
+import axdum.master1.sir.testjpa_spring.model.User;
 import axdum.master1.sir.testjpa_spring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -28,7 +27,7 @@ public class UserResource {
    * @return the list of all users
    */
   @GetMapping("/all")
-  public List<User> getAll() {
+  public List<User> getAllUsers() {
     return userService.getAllUsers();
   }
 
@@ -102,7 +101,7 @@ public class UserResource {
   }
 
   /**
-   * Update the user
+   * Update the user withe the passed Id.
    *
    * @param id        user Id
    * @param pseudo    the new pseudo

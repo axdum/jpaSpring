@@ -28,4 +28,11 @@ public interface HeaterRepository extends JpaRepository<Heater, Integer> {
    * @param id the Id of the heater to delete
    */
   void deleteById(Long id);
+
+  /**
+   * Check if heater exists by Id.
+   *
+   * @param id the Id of the home
+   */
+  boolean existsById(Long id);
 }

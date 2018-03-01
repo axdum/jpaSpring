@@ -14,55 +14,83 @@ public class ElectronicDeviceResource {
   ElectronicDeviceService electronicDeviceService;
 
   /**
-   * Get all ElectronicDevices list.
+   * Get all Heaters list.
    *
-   * @return the list of all ElectronicDevices
+   * @return the list of all Heaters
    */
   @GetMapping("/all")
-  public List<ElectronicDevice> getAll() {
+  public List<ElectronicDevice> getAllElectronicDevices() {
     return electronicDeviceService.getAllElectronicDevices();
   }
 
   /**
-   * Get the list of ElectronicDevices matching the name.
+   * Get the Heater matching the id.
    *
-   * @param name the name of ElectronicDevices
-   * @return a list of ElectronicDevices
-   */
-  @GetMapping("/{name}")
-  public List<ElectronicDevice> getElectronicDevice(@PathVariable("name") String name) {
-    return electronicDeviceService.getElectronicDeviceByName(name);
-  }
-
-  /**
-   * Get the ElectronicDevice matching the id.
-   *
-   * @param id the id of the ElectronicDevice
-   * @return the ElectronicDevice
+   * @param id Heater id
+   * @return the Heater
    */
   @GetMapping("/id/{id}")
-  public ElectronicDevice getId(@PathVariable("id") Long id) {
+  public ElectronicDevice getElectronicDeviceById(@PathVariable("id") Long id) {
     return electronicDeviceService.getElectronicDeviceById(id);
   }
 
   /**
-   * Create a new ElectronicDevice.
+   * Get Heaters by name.
    *
-   * @param electronicDevice the new ElectronicDevice
+   * @param name Heater name.
+   * @return the Heater
    */
-  @RequestMapping(value = "/create", method = RequestMethod.POST)
-  public void addReservation(@RequestBody ElectronicDevice electronicDevice) {
-    electronicDeviceService.addElectronicDevice(electronicDevice);
+  @GetMapping("/{name}")
+  public List<ElectronicDevice> getHeater(@PathVariable("name") String name) {
+    return electronicDeviceService.getElectronicDeviceByName(name);
   }
 
   /**
-   * Update the ElectronicDevice.
+   * Create an electronic device.
    *
-   * @param id               the id of the ElectronicDevice to update
-   * @param electronicDevice the ElectronicDevice to update
+   * @param name          the electric device name
+   * @param hourOnPerDay  the number of operating hours per day
+   * @param dayOnPerYear  the number of operating days per year
+   * @param watts         the power
+   * @param ownerNickname the owner nickname
    */
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public void updateReservation(@RequestBody ElectronicDevice electronicDevice, @PathVariable("id") Long id) {
-    electronicDeviceService.updateElectronicDevice(id, electronicDevice);
+  @RequestMapping(
+          value = "/create",
+          method = RequestMethod.POST,
+          params = {"name", "hourOnPerDay", "dayOnPerYear", "watts", "ownerNickname"})
+  @ResponseBody
+  public void createElectronicDevice(String name, Double hourOnPerDay, int dayOnPerYear, int watts, String ownerNickname) {
+    electronicDeviceService.createElectronicDevice(name, hourOnPerDay, dayOnPerYear, watts, ownerNickname);
+  }
+
+  /**
+   * Update the electronic device with the passed Id.
+   *
+   * @param name         the name
+   * @param hourOnPerDay the number of operating hours per day
+   * @param dayOnPerYear the number of operating days per year
+   * @param watts        the power
+   * @param nickname     the owner nickname
+   */
+  @RequestMapping(value = "/update",
+          method = RequestMethod.PUT,
+          params = {"id", "name", "hourOnPerDay", "dayOnPerYear", "watts", "nickname"})
+  @ResponseBody
+  public void updateElectronicDevice(Long id, String name, Double hourOnPerDay, int dayOnPerYear, int watts, String nickname) {
+    electronicDeviceService.updateElectronicDevice(id, name, hourOnPerDay, dayOnPerYear, watts, nickname);
+  }
+
+  /**
+   * Delete the Heater with the passed id.
+   *
+   * @param id the Id of the Heater to delete
+   */
+  @RequestMapping(
+          value = "/delete",
+          method = RequestMethod.DELETE,
+          params = {"id"})
+  @ResponseBody
+  public void deleteElectronicDevice(long id) {
+    electronicDeviceService.deleteElectronicDevice(id);
   }
 }

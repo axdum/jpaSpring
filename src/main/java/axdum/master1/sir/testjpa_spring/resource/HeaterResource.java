@@ -19,15 +19,26 @@ public class HeaterResource {
    * @return the list of all Heaters
    */
   @GetMapping("/all")
-  public List<Heater> getAll() {
+  public List<Heater> getAllHeaters() {
     return heaterService.getAllHeaters();
   }
 
   /**
-   * Get the list of Heaters matching the name.
+   * Get the Heater matching the id.
    *
-   * @param name the name of Heaters
-   * @return a list of Heaters
+   * @param id Heater id
+   * @return the Heater
+   */
+  @GetMapping("/id/{id}")
+  public Heater getHeaterById(@PathVariable("id") Long id) {
+    return heaterService.getHeaterById(id);
+  }
+
+  /**
+   * Get Heaters by name.
+   *
+   * @param name Heater name.
+   * @return the Heater
    */
   @GetMapping("/{name}")
   public List<Heater> getHeater(@PathVariable("name") String name) {
@@ -35,34 +46,51 @@ public class HeaterResource {
   }
 
   /**
-   * Get the Heater matching the id.
+   * Create a heater
    *
-   * @param id the id of the Heater
-   * @return the Heater
+   * @param name         the name
+   * @param hourOnPerDay the number of operating hours per day
+   * @param dayOnPerYear the number of operating days per year
+   * @param watts        the power
+   * @param homeId       the id of the home
    */
-  @GetMapping("/id/{id}")
-  public Heater getId(@PathVariable("id") Long id) {
-    return heaterService.getHeaterById(id);
+  @RequestMapping(
+          value = "/create",
+          method = RequestMethod.POST,
+          params = {"name", "hourOnPerDay", "dayOnPerYear", "watts", "homeId"})
+  @ResponseBody
+  public void createHeater(String name, Double hourOnPerDay, int dayOnPerYear, int watts, Long homeId) {
+    heaterService.createHeater(name, hourOnPerDay, dayOnPerYear, watts, homeId);
   }
 
   /**
-   * Create a new Heater.
+   * Update the Heater with the passed Id.
    *
-   * @param heater the new Heater
+   * @param name         the name
+   * @param hourOnPerDay the number of operating hours per day
+   * @param dayOnPerYear the number of operating days per year
+   * @param watts        the power
+   * @param homeId       the id of the home
    */
-  @RequestMapping(value = "/create", method = RequestMethod.POST)
-  public void addReservation(@RequestBody Heater heater) {
-    heaterService.addHeater(heater);
+  @RequestMapping(value = "/update",
+          method = RequestMethod.PUT,
+          params = {"id", "name", "hourOnPerDay", "dayOnPerYear", "watts", "homeId"})
+  @ResponseBody
+  public void updateHeater(Long id, String name, Double hourOnPerDay, int dayOnPerYear, int watts, Long homeId) {
+    heaterService.updateHeater(id, name, hourOnPerDay, dayOnPerYear, watts, homeId);
   }
 
   /**
-   * Update the Heater.
+   * Delete the Heater with the passed id.
    *
-   * @param id     the id of the Heater to update
-   * @param heater the Heater to update
+   * @param id the Id of the Heater to delete
    */
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public void updateReservation(@RequestBody Heater heater, @PathVariable("id") Long id) {
-    heaterService.updateHeater(id, heater);
+  @RequestMapping(
+          value = "/delete",
+          method = RequestMethod.DELETE,
+          params = {"id"})
+  @ResponseBody
+  public void deleteHeater(long id) {
+    heaterService.deleteHeater(id);
   }
 }

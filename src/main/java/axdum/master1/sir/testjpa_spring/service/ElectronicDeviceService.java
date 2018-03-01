@@ -1,7 +1,9 @@
 package axdum.master1.sir.testjpa_spring.service;
 
 import axdum.master1.sir.testjpa_spring.model.ElectronicDevice;
+import axdum.master1.sir.testjpa_spring.model.User;
 import axdum.master1.sir.testjpa_spring.repository.ElectronicDeviceRepository;
+import axdum.master1.sir.testjpa_spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class ElectronicDeviceService {
   @Autowired
   ElectronicDeviceRepository electronicDeviceRepository;
+  @Autowired
+  UserRepository userRepository;
 
   /**
    * Get all ElectronicDevices list.
@@ -19,16 +23,6 @@ public class ElectronicDeviceService {
    */
   public List<ElectronicDevice> getAllElectronicDevices() {
     return electronicDeviceRepository.findAll();
-  }
-
-  /**
-   * Get the ElectronicDevice matching the nickname.
-   *
-   * @param name the name of the ElectronicDevice
-   * @return the ElectronicDevice
-   */
-  public List<ElectronicDevice> getElectronicDeviceByName(String name) {
-    return electronicDeviceRepository.findByName(name);
   }
 
   /**
@@ -42,30 +36,77 @@ public class ElectronicDeviceService {
   }
 
   /**
-   * Create a new ElectronicDevice.
+   * Get the ElectronicDevice matching the nickname.
    *
-   * @param electronicDevice the new ElectronicDevice
+   * @param name the name of the ElectronicDevice
+   * @return the ElectronicDevice
    */
-  public void addElectronicDevice(ElectronicDevice electronicDevice) {
-    electronicDeviceRepository.save(electronicDevice);
+  public List<ElectronicDevice> getElectronicDeviceByName(String name) {
+    return electronicDeviceRepository.findByName(name);
   }
 
   /**
-   * Update the ElectronicDevice.
+   * Create a electronic device
    *
-   * @param id               the id of the ElectronicDevice to update
-   * @param electronicDevice the ElectronicDevice to update
+   * @param name         the name
+   * @param hourOnPerDay the number of operating hours per day
+   * @param dayOnPerYear the number of operating days per year
+   * @param watts        the power
+   * @param nickname     the nickname of the owner
    */
-  public void updateElectronicDevice(Long id, ElectronicDevice electronicDevice) {
-    electronicDeviceRepository.save(electronicDevice);
+  public String createElectronicDevice(String name, Double hourOnPerDay, int dayOnPerYear, int watts, String nickname) {
+    try {
+      User owner = userRepository.findFirstByPseudo(nickname);
+      ElectronicDevice electronicDevice = new ElectronicDevice(name, hourOnPerDay, dayOnPerYear, watts, owner);
+      electronicDeviceRepository.save(electronicDevice);
+    } catch (Exception ex) {
+      return "Error creating the electronic device: " + ex.toString();
+    }
+    return "Electronic device succesfully created !";
   }
 
   /**
-   * Delete the ElectronicDevice.
+   * Update a heater.
    *
-   * @param id the id of the ElectronicDevice to delete
+   * @param id           the id of the electronic device to update
+   * @param name         the name
+   * @param hourOnPerDay the number of operating hours per day
+   * @param dayOnPerYear the number of operating days per year
+   * @param watts        the power
+   * @param nickname     the nickname of the owner
+   * @return heater updated or not
    */
-  public void deleteElectronicDevice(Long id) {
-    electronicDeviceRepository.deleteById(id);
+  public String updateElectronicDevice(Long id, String name, Double hourOnPerDay, int dayOnPerYear, int watts, String nickname) {
+    try {
+      User owner = userRepository.findFirstByPseudo(nickname);
+      ElectronicDevice electronicDevice = electronicDeviceRepository.findById(id);
+      electronicDevice.setName(name);
+      electronicDevice.sethourOnPerDay(hourOnPerDay);
+      electronicDevice.setdayOnPerYear(dayOnPerYear);
+      electronicDevice.setWatts(watts);
+      electronicDevice.setOwner(owner);
+      electronicDeviceRepository.save(electronicDevice);
+    } catch (Exception ex) {
+      return "Error updating the electronic device: " + ex.toString();
+    }
+    return "Electronic Device succesfully updated !";
+  }
+
+  /**
+   * Delete the heater if exists.
+   *
+   * @param id the id of the heater to delete
+   */
+  public String deleteElectronicDevice(Long id) {
+    if (electronicDeviceRepository.existsById(id)) {
+      try {
+        ElectronicDevice electronicDevice = electronicDeviceRepository.findById(id);
+        electronicDeviceRepository.delete(electronicDevice);
+      } catch (Exception ex) {
+        return "Error deleting the electronic device: " + ex.toString();
+      }
+      return "Electronic device succesfully updated !";
+    }
+    return "ElectronicDevice doesn't exist !";
   }
 }

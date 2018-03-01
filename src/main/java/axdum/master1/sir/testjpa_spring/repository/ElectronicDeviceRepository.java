@@ -23,9 +23,9 @@ public interface ElectronicDeviceRepository extends JpaRepository<ElectronicDevi
   ElectronicDevice findById(Long id);
 
   /**
-   * Delete an electronic device by Id.
+   * Check if the electronic device exists by Id.
    *
-   * @param id the Id of the electronic device to delete
+   * @param id the Id of the electronic device
    */
-  void deleteById(Long id);
+  boolean existsById(Long id);
 }
