@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/home")
+@RequestMapping("api/home")
 public class HomeResource {
   @Autowired
   HomeService homeService;
@@ -51,7 +51,7 @@ public class HomeResource {
    * @param home the new home
    */
   @RequestMapping(value = "/create", method = RequestMethod.POST)
-  public void addReservation(@RequestBody Home home) {
+  public void addHome(@RequestBody Home home) {
     homeService.addHome(home);
   }
 
@@ -62,7 +62,7 @@ public class HomeResource {
    * @param home the home to update
    */
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public void updateReservation(@RequestBody Home home, @PathVariable("id") Long id) {
+  public void updateHome(@RequestBody Home home, @PathVariable("id") Long id) {
     homeService.updateHome(id, home);
   }
 }

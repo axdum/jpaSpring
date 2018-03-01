@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/elecdevice")
+@RequestMapping("api/elecdevice")
 public class ElectronicDeviceResource {
   @Autowired
   ElectronicDeviceService electronicDeviceService;

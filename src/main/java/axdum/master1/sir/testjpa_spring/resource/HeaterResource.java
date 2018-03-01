@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("rest/heater")
+@RequestMapping("api/heater")
 public class HeaterResource {
   @Autowired
   HeaterService heaterService;
