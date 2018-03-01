@@ -23,7 +23,7 @@ public class User {
     private List<ElectronicDevice> electronicDevices;
 
     /**
-     * Constructeur User vide.
+     * Empty constructor of User.
      */
     public User() {
         super();
@@ -33,11 +33,12 @@ public class User {
     }
 
     /**
-     * Constructeur User.
+     * * User Constructor with paramaters.
      *
-     * @param firstName le nom de la personne
-     * @param name      le prénom de la personne
-     * @param mail      le mail de la personne
+     * @param pseudo    the nickname
+     * @param firstName the name
+     * @param name      the first name
+     * @param mail      the mail address
      */
     public User(String pseudo, String firstName, String name, String mail) {
         super();
@@ -49,55 +50,38 @@ public class User {
         friends = new ArrayList<User>();
         electronicDevices = new ArrayList<ElectronicDevice>();
     }
-/*
-    public List<Heater> listHeaters() {
-        ArrayList heaters = new ArrayList<Heater>();
-        for (Home home : this.homes) {
-            heaters.addAll(home.getHeaters());
-        }
-        return heaters;
-    }
-
-    public List<SmartDevice> getSmartDevices(){
-        ArrayList<SmartDevice> smartDevices = new ArrayList<SmartDevice>();
-        for (Home home : this.homes) {
-            smartDevices.addAll(home.getHeaters());
-        }
-        smartDevices.addAll(this.electronicDevices);
-        return smartDevices;
-    }*/
 
     /**
-     * Ajouter un ami.
+     * Add a friend.
      *
-     * @param friend l'ami
+     * @param friend the friend
      */
     public void addFriend(User friend) {
         this.friends.add(friend);
     }
 
     /**
-     * Ajouter une résidence.
+     * Add a home.
      *
-     * @param home la résidence
+     * @param home the home
      */
     public void addHome(Home home) {
         this.homes.add(home);
     }
 
     /**
-     * Ajouter un appareil électronique.
+     * Add an electronic device.
      *
-     * @param electronicDevice l'appareil électronique
+     * @param electronicDevice the electronic device
      */
     public void addElectronicDevice(ElectronicDevice electronicDevice) {
         this.electronicDevices.add(electronicDevice);
     }
 
     /**
-     * Obtenir l'ID de la personne.
+     * Get the Id.
      *
-     * @return l'ID de la personne
+     * @return the Id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -106,18 +90,18 @@ public class User {
     }
 
     /**
-     * Renseigner l'ID de la personne.
+     * Set the Id.
      *
-     * @param id l'ID de la personne
+     * @param id the Id
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Obtenir le pseudo de la personne.
+     * Get the nickname.
      *
-     * @return le pseudo de la personn
+     * @return the nickname
      */
     @Column(unique = true)
     public String getPseudo() {
@@ -125,110 +109,110 @@ public class User {
     }
 
     /**
-     * Renseigner le pseudo de la personne.
+     * Set the nickname.
      *
-     * @param pseudo le pseudo de la personne
+     * @param pseudo the nickname
      */
     public void setPseudo(String pseudo) {
         this.pseudo = pseudo;
     }
 
     /**
-     * Obtenir le prénom de la personne.
+     * Get the first name.
      *
-     * @return le prénom de la personne
+     * @return the first name
      */
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * Renseigner le prénom de la personne.
+     * Get the first name.
      *
-     * @param firstName le prénom de la personne
+     * @param firstName the first name
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * Obtenir le nom de la personne.
+     * Get the name.
      *
-     * @return le nom de la personne
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Rensigner le nom de la personne.
+     * Set the name.
      *
-     * @param name le nom de la personne
+     * @param name the name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Obtenier le mail de la personne.
+     * Get the mail address.
      *
-     * @return le mail de la personne
+     * @return the mail address
      */
     public String getMail() {
         return mail;
     }
 
     /**
-     * Renseigner le mail de la personne.
+     * Set the mail address.
      *
-     * @param mail le mail de la personne
+     * @param mail the email address
      */
     public void setMail(String mail) {
         this.mail = mail;
     }
 
     /**
-     * Obtenir la liste des résidences de la personne.
+     * Get the homes list.
      *
-     * @return la liste des résidences de la personne
+     * @return the homes list
      */
-    @OneToMany(mappedBy = "owner", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     public List<Home> getHomes() {
         return homes;
     }
 
     /**
-     * Renseigner la liste des résidences de la personne.
+     * Set the homes list.
      *
-     * @param homes la liste des résidences de la personne
+     * @param homes the homes list
      */
     public void setHomes(List<Home> homes) {
         this.homes = homes;
     }
 
     /**
-     * Obtenir la liste des amis de la personne.
+     * Get the friends list.
      *
-     * @return la liste des amis de la personne
+     * @return the friends list
      */
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     public List<User> getFriends() {
         return friends;
     }
 
     /**
-     * Renseigner la liste des amis de la personne.
+     * Set the friends list.
      *
-     * @param friends la liste des amis de la personne
+     * @param friends the friends list
      */
     public void setFriends(List<User> friends) {
         this.friends = friends;
     }
 
     /**
-     * Obtenir la liste des appareils electroniques de la personne.
+     * Get the electronic devices list.
      *
-     * @return la liste des appareils electroniques de la personne
+     * @return the electronic devices list
      */
     @OneToMany(mappedBy = "owner", cascade = CascadeType.PERSIST)
     public List<ElectronicDevice> getElectronicDevices() {
@@ -236,9 +220,9 @@ public class User {
     }
 
     /**
-     * Renseigner la liste des appareils electroniques de la personne.
+     * Set the electronic devices list.
      *
-     * @param electronicDevices la liste des appareils electroniques de la personne
+     * @param electronicDevices the electronic devices list
      */
     public void setElectronicDevices(List<ElectronicDevice> electronicDevices) {
         this.electronicDevices = electronicDevices;

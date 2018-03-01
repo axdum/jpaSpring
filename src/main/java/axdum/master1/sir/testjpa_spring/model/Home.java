@@ -20,7 +20,7 @@ public class Home {
     private List<Heater> heaters;
 
     /**
-     * Constructeur Home vide.
+     * Empty constructor of Home.
      */
     public Home() {
         super();
@@ -28,12 +28,12 @@ public class Home {
     }
 
     /**
-     * Constructeur Home avec propriétaire renseigné.
+     * Home constructor with paramaters.
      *
-     * @param name    le nom de la résidence
-     * @param size    la taille de la résidence en m3
-     * @param nbRooms le nombre de pièces de la résidence
-     * @param owner   le propriétaire de la résidence
+     * @param name    the name
+     * @param size    the surface (m3)
+     * @param nbRooms the number of rooms
+     * @param owner   the owner
      */
     public Home(String name, int size, int nbRooms, User owner) {
         super();
@@ -45,11 +45,11 @@ public class Home {
     }
 
     /**
-     * Constructeur Home sans propriétaire.
+     * Home constructor withour paramaters.
      *
-     * @param name    le nom de la résidence
-     * @param size    la taille de la résidence en m3
-     * @param nbRooms le nombre de pièces de la résidence
+     * @param name    the name
+     * @param size    the surface (m3)
+     * @param nbRooms the number of rooms
      */
     public Home(String name, int size, int nbRooms) {
         super();
@@ -59,18 +59,18 @@ public class Home {
     }
 
     /**
-     * Ajouter un chauffage à la résidence.
+     * Add a heater to the Home.
      *
-     * @param heater le chauffage
+     * @param heater the heater
      */
     public void addHeater(Heater heater) {
         this.heaters.add(heater);
     }
 
     /**
-     * Obtenir l'ID de la résidence.
+     * Get the ID.
      *
-     * @return l'ID de la résidence
+     * @return the Id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,18 +79,18 @@ public class Home {
     }
 
     /**
-     * Renseigner l'ID de la résidence.
+     * Set the Id.
      *
-     * @param id l'ID de la résidence
+     * @param id the Id
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Obtenir le nom de la résidence.
+     * Get the name.
      *
-     * @return le nom de la résidence
+     * @return the name
      */
     public String getName() {
         return name;
@@ -106,45 +106,45 @@ public class Home {
     }
 
     /**
-     * Obtenir la taille de la résidence.
+     * Get the surface.
      *
-     * @return la taille de la résidence
+     * @return the surface
      */
     public int getSize() {
         return size;
     }
 
     /**
-     * Renseigner la taille de la résidence.
+     * Set the surface.
      *
-     * @param size la taille de la résidence
+     * @param size the surface
      */
     public void setSize(int size) {
         this.size = size;
     }
 
     /**
-     * Obtenir le nombre de pièce de la résidence.
+     * Get the number of rooms.
      *
-     * @return le nombre de piècees de la résidence
+     * @return the number of rooms
      */
     public int getNbRooms() {
         return nbRooms;
     }
 
     /**
-     * Renseigner le nombre de pièces de la résidence.
+     * Set the number of rooms.
      *
-     * @param nbRooms le nombre de pièces de la résidence
+     * @param nbRooms the number of rooms
      */
     public void setNbRooms(int nbRooms) {
         this.nbRooms = nbRooms;
     }
 
     /**
-     * Obtenir le propriétaire de la résidence.
+     * Get the owner.
      *
-     * @return le propriétaire de la résidence
+     * @return the owner
      */
     @ManyToOne
     public User getOwner() {
@@ -152,28 +152,28 @@ public class Home {
     }
 
     /**
-     * Renseigner le propriétaire de la résidence.
+     * Set the owner.
      *
-     * @param owner le propriétaire de la résidence
+     * @param owner the owner
      */
     public void setOwner(User owner) {
         this.owner = owner;
     }
 
     /**
-     * Obtenir la liste des radiateurs de la résidence.
+     * Get the heaters list.
      *
-     * @return la liste de radiateurs de la résidence
+     * @return the heaters list
      */
-    @OneToMany(mappedBy = "home", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "home", cascade = CascadeType.ALL)
     public List<Heater> getHeaters() {
         return heaters;
     }
 
     /**
-     * Renseigner la liste des radiateurs de la résidence.
+     * Set the heaters list.
      *
-     * @param heaters la liste des radiateurs de la résidence
+     * @param heaters the heaters list
      */
     public void setHeaters(List<Heater> heaters) {
         this.heaters = heaters;

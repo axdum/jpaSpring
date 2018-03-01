@@ -1,8 +1,6 @@
 package axdum.master1.sir.testjpa_spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -17,20 +15,20 @@ public class Heater extends SmartDevice {
     private Home home;
 
     /**
-     * Constructeur Heater vide.
+     * Empty constructor of Heater.
      */
     public Heater() {
         super();
     }
 
     /**
-     * Constructeur Heater avec résidence renseignée.
+     * Heater  constructor with parameters.
      *
-     * @param name         le nom du chauffage
-     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour du chauffage
-     * @param dayOnPerYear le nombre de jours de fonctionnement par an du chauffage
-     * @param watts        la puissance en watts du chauffage
-     * @param home         la résidence du chauffage
+     * @param name         the name
+     * @param hourOnPerDay the number of operating hours per day
+     * @param dayOnPerYear the number of operating days per year
+     * @param watts        the power
+     * @param home         the home
      */
     public Heater(String name, Double hourOnPerDay, int dayOnPerYear, int watts, Home home) {
         super(name, hourOnPerDay, dayOnPerYear, watts);
@@ -38,21 +36,21 @@ public class Heater extends SmartDevice {
     }
 
     /**
-     * Constructeur Heater sans résidence.
+     * Heater constructor without home.
      *
-     * @param name         le nom du chauffage
-     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour du chauffage
-     * @param dayOnPerYear le nombre de jours de fonctionnement par an du chauffage
-     * @param watts        la puissance en watts du chauffage
+     * @param name         the name
+     * @param hourOnPerDay the number of operating days per year
+     * @param dayOnPerYear the number of operating days per year
+     * @param watts        the power
      */
     public Heater(String name, Double hourOnPerDay, int dayOnPerYear, int watts) {
         super(name, hourOnPerDay, dayOnPerYear, watts);
     }
 
     /**
-     * Obtenir la résidence du chauffage.
+     * Get the home.
      *
-     * @return la résidence du chauffage
+     * @return the home
      */
     @ManyToOne
     public Home getHome() {
@@ -60,9 +58,9 @@ public class Heater extends SmartDevice {
     }
 
     /**
-     * Renseigner la résidence du chauffage.
+     * Set the home.
      *
-     * @param home : la résidence du chauffage
+     * @param home the home
      */
     public void setHome(Home home) {
         this.home = home;

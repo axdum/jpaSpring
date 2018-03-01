@@ -1,9 +1,5 @@
 package axdum.master1.sir.testjpa_spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +15,7 @@ public class SmartDevice {
     private int watts;
 
     /**
-     * Constructeur SmartDevice sans params.
+     * Empty constructor of SmartDevice.
      */
     public SmartDevice() {
         super();
@@ -29,14 +25,12 @@ public class SmartDevice {
     }
 
     /**
-     * Constructeur SmartDevice.
+     * SmartDevice constructor with parameters.
      *
-     * @param name         le nom de l'appareil intelligent
-     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     *                     intelligent
-     * @param dayOnPerYear le nombre de jours de fonctionnement par an de l'appareil
-     *                     intelligent
-     * @param watts        la puissance en watts de l'appareil intelligent
+     * @param name         the name
+     * @param hourOnPerDay the number of operating hours per day
+     * @param dayOnPerYear the number of operating days per year
+     * @param watts        the power
      */
     public SmartDevice(String name, Double hourOnPerDay, int dayOnPerYear, int watts) {
         super();
@@ -47,9 +41,9 @@ public class SmartDevice {
     }
 
     /**
-     * Obtenir l'ID de l'appareil intelligent.
+     * Get the Id.
      *
-     * @return l'ID de l'appareil intelligent
+     * @return the Id
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,88 +52,81 @@ public class SmartDevice {
     }
 
     /**
-     * Rensigner l'ID de l'appareil intelligent.
+     * Set the Id.
      *
-     * @param id l'ID de l'appareil intelligent
+     * @param id the Id
      */
     public void setId(Long id) {
         this.id = id;
     }
 
     /**
-     * Obtenir le nom de l'appareil intelligent.
+     * Get the name.
      *
-     * @return le nom de l'appareil intelligent
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Renseigner le nom de l'appareil intelligent.
+     * Set the name.
      *
-     * @param name le nom de l'appareil intelligent
+     * @param name the name
      */
     public void setName(String name) {
         this.name = name;
     }
 
     /**
-     * Obtenir le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     * intelligent.
+     * Get the number of operating hours per day.
      *
-     * @return le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     * intelligent
+     * @return the number of operating hours per day
      */
     public Double gethourOnPerDay() {
         return hourOnPerDay;
     }
 
     /**
-     * Renseigner le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     * intelligent.
+     * Set the number of operating hours per day.
      *
-     * @param hourOnPerDay le nombre d'heures moyen de fonctionnement par jour de l'appareil
-     *                     intelligent
+     * @param hourOnPerDay the number of operating hours per day
      */
     public void sethourOnPerDay(Double hourOnPerDay) {
         this.hourOnPerDay = hourOnPerDay;
     }
 
     /**
-     * Obtenir le nombre de jours de fonctionnement par an de l'appareil
-     * intelligent.
+     * Get the number of operating days per year.
      *
-     * @return le nombre de jours de fonctionnement par an de l'appareil intelligent
+     * @return the number of operating days per year
      */
     public int getdayOnPerYear() {
         return dayOnPerYear;
     }
 
     /**
-     * Renseigner le nombre de jours de fonctionnement par an de l'appareil
-     * intelligent.
+     * Set the number of operating days per year.
      *
-     * @param dayOnPerYear le nombre de jours de fonctionnement par an de l'appareil
-     *                     intelligent
+     * @param dayOnPerYear the number of operating days per year
      */
     public void setdayOnPerYear(int dayOnPerYear) {
         this.dayOnPerYear = dayOnPerYear;
     }
 
     /**
-     * Obtenir la puissance de l'appareil intelligent en watts.
+     * Get the power (watts).
      *
-     * @return la puissance de l'appareil intelligent en watts
+     * @return the power
      */
     public int getWatts() {
         return watts;
     }
 
     /**
-     * Renseigner la puissance de l'appareil intelligent en watts.
+     * Set the power (watts)
      *
-     * @param watts la puissance de l'appareil intelligent en watts
+     * @param watts the power
      */
     public void setWatts(int watts) {
         this.watts = watts;
