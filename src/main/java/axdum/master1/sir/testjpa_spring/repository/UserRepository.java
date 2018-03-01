@@ -22,9 +22,24 @@ public interface UserRepository extends JpaRepository<User, Integer> {
   User findById(Long id);
 
   /**
+   * Find an user by Mail.
+   *
+   * @param mail the mail of the user to find
+   * @return the matching user
+   */
+  User findUserByMail(String mail);
+
+  /**
    * Delete an user by Id.
    *
    * @param id the Id of the user to delete
    */
   void deleteById(Long id);
+
+  /**
+   * Check user exists by Id.
+   *
+   * @param id the Id of the user
+   */
+  boolean existsById(Long id);
 }

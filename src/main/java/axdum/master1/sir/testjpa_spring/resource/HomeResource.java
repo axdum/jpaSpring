@@ -24,20 +24,9 @@ public class HomeResource {
   }
 
   /**
-   * Get the list of homes matching the name.
-   *
-   * @param name the name of homes
-   * @return a list of homes
-   */
-  @GetMapping("/{name}")
-  public List<Home> getHome(@PathVariable("name") String name) {
-    return homeService.getHomeByName(name);
-  }
-
-  /**
    * Get the home matching the id.
    *
-   * @param id the id of the home
+   * @param id home id
    * @return the home
    */
   @GetMapping("/id/{id}")
@@ -46,23 +35,61 @@ public class HomeResource {
   }
 
   /**
-   * Create a new home.
+   * Get homes by name.
    *
-   * @param home the new home
+   * @param name home name
+   * @return the home
    */
-  @RequestMapping(value = "/create", method = RequestMethod.POST)
-  public void addHome(@RequestBody Home home) {
-    homeService.addHome(home);
+  @GetMapping("/{name}")
+  public List<Home> getHome(@PathVariable("name") String name) {
+    return homeService.getHomeByName(name);
   }
 
   /**
-   * Update the home.
+   * Create a new home
    *
-   * @param id   the id of the home to update
-   * @param home the home to update
+   * @param name          home name
+   * @param size          home surface (m3)
+   * @param nbRooms       home number of rooms
+   * @param ownerNickname home owner nickname
    */
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public void updateHome(@RequestBody Home home, @PathVariable("id") Long id) {
-    homeService.updateHome(id, home);
+  @RequestMapping(
+          value = "/create",
+          method = RequestMethod.POST,
+          params = {"name", "size", "nbrooms", "ownerNickname"})
+  @ResponseBody
+  public void createHome(String name, int size, int nbRooms, String ownerNickname) {
+    homeService.createHome(name, size, nbRooms, ownerNickname);
+  }
+
+  /**
+   * Update the home with the given Id.
+   *
+   * @param id            Id of the home to update
+   * @param name          new name
+   * @param size          new surface (m3)
+   * @param nbRooms       new number of rooms
+   * @param ownerNickname new owner nickname
+   */
+  @RequestMapping(value = "/update",
+          method = RequestMethod.PUT,
+          params = {"id", "name", "size", "nbRooms", "ownerNickname"})
+  @ResponseBody
+  public void updateHome(Long id, String name, int size, int nbRooms, String ownerNickname) {
+    homeService.updateHome(id, name, size, nbRooms, ownerNickname);
+  }
+
+  /**
+   * Delete the home with the passed id.
+   *
+   * @param id the Id of the home to delete
+   */
+  @RequestMapping(
+          value = "/delete",
+          method = RequestMethod.DELETE,
+          params = {"id"})
+  @ResponseBody
+  public void deleteHome(long id) {
+    homeService.deleteHome(id);
   }
 }

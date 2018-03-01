@@ -33,7 +33,17 @@ public class User {
   }
 
   /**
-   * * User Constructor with paramaters.
+   * User Constructor with Id
+   *
+   * @param id
+   */
+  public User(Long id) {
+    super();
+    this.id = id;
+  }
+
+  /**
+   * User Constructor with paramaters.
    *
    * @param pseudo    the nickname
    * @param firstName the name
@@ -158,6 +168,7 @@ public class User {
    *
    * @return the mail address
    */
+  @Column(unique = true)
   public String getMail() {
     return mail;
   }

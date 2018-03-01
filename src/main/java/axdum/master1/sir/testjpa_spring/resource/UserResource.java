@@ -44,6 +44,44 @@ public class UserResource {
   }
 
   /**
+   * Retrieve the id for the user with the passed nickname.
+   */
+  @RequestMapping(
+          value = "/get-by-nickname",
+          method = RequestMethod.GET,
+          params = {"nickname"})
+  @ResponseBody
+  public String getByNickname(String nickname) {
+    String userId;
+    try {
+      User user = userService.getUserByNickname(nickname);
+      userId = String.valueOf(user.getId());
+    } catch (Exception ex) {
+      return "User not found: " + ex.toString();
+    }
+    return "The user id is: " + userId;
+  }
+
+  /**
+   * Retrieve the id for the user with the passed mail.
+   */
+  @RequestMapping(
+          value = "/get-by-mail",
+          method = RequestMethod.GET,
+          params = {"mail"})
+  @ResponseBody
+  public String getByMail(String mail) {
+    String userId;
+    try {
+      User user = userService.getUserByMail(mail);
+      userId = String.valueOf(user.getId());
+    } catch (Exception ex) {
+      return "User not found: " + ex.toString();
+    }
+    return "The user id is: " + userId;
+  }
+
+  /**
    * Get the user matching the id.
    *
    * @param id the id of user
@@ -54,24 +92,42 @@ public class UserResource {
     return userService.getUserById(id);
   }
 
-  /**
-   * Create a new User.
-   *
-   * @param user the new user
-   */
-  @RequestMapping(value = "/create", method = RequestMethod.POST)
-  public void addReservation(@RequestBody User user) {
-    userService.addUser(user);
+  @RequestMapping(
+          value = "/create",
+          method = RequestMethod.POST,
+          params = {"pseudo", "firstname", "name", "mail"})
+  @ResponseBody
+  public void createUser(String pseudo, String firstname, String name, String mail) {
+    userService.createUser(pseudo, firstname, name, mail);
   }
 
   /**
-   * Update the user.
+   * Update the user
    *
-   * @param id   the id of the user to update
-   * @param user the user to update
+   * @param id        user Id
+   * @param pseudo    the new pseudo
+   * @param firstname the new firstname
+   * @param name      the new name
    */
-  @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-  public void updateReservation(@RequestBody User user, @PathVariable("id") Long id) {
-    userService.updateUser(id, user);
+  @RequestMapping(value = "/update",
+          method = RequestMethod.PUT,
+          params = {"id", "pseudo", "firstname", "name", "mail"})
+  @ResponseBody
+  public void updateUserInfos(long id, String pseudo, String firstname, String name, String mail) {
+    userService.updateUser(id, pseudo, firstname, name, mail);
+  }
+
+  /**
+   * Delete the user with the passed id.
+   *
+   * @param id the Id of the user to delete
+   */
+  @RequestMapping(
+          value = "/delete",
+          method = RequestMethod.DELETE,
+          params = {"id"})
+  @ResponseBody
+  public void deleteUser(long id) {
+    String res = userService.deleteUser(id);
   }
 }

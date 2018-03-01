@@ -1,7 +1,9 @@
 package axdum.master1.sir.testjpa_spring.service;
 
 import axdum.master1.sir.testjpa_spring.model.Home;
+import axdum.master1.sir.testjpa_spring.model.User;
 import axdum.master1.sir.testjpa_spring.repository.HomeRepository;
+import axdum.master1.sir.testjpa_spring.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class HomeService {
   @Autowired
   HomeRepository homeRepository;
+  @Autowired
+  UserRepository userRepository;
 
   /**
    * Get all homes list.
@@ -42,30 +46,65 @@ public class HomeService {
   }
 
   /**
-   * Create a new home.
+   * Create a new Home.
    *
-   * @param home the new home
+   * @param name          home name
+   * @param size          home surface (m3)
+   * @param nbRooms       home number of rooms
+   * @param ownerNickname home owner nickname
+   * @return home created or not
    */
-  public void addHome(Home home) {
-    homeRepository.save(home);
+  public String createHome(String name, int size, int nbRooms, String ownerNickname) {
+    try {
+      User user = userRepository.findFirstByPseudo(ownerNickname);
+      Home home = new Home(name, size, nbRooms, user);
+      homeRepository.save(home);
+    } catch (Exception ex) {
+      return "Error creating the Home: " + ex.toString();
+    }
+    return "Home succesfully created !";
   }
 
   /**
-   * Update the home.
+   * Update a Home.
    *
-   * @param id   the id of the home to update
-   * @param home the home to update
+   * @param id            the Id of the home to update
+   * @param name          new name
+   * @param size          new surface (m3)
+   * @param nbRooms       new number of rooms
+   * @param ownerNickname new owner nickname
+   * @return user updated or not
    */
-  public void updateHome(Long id, Home home) {
-    homeRepository.save(home);
+  public String updateHome(Long id, String name, int size, int nbRooms, String ownerNickname) {
+    try {
+      User newOwner = userRepository.findFirstByPseudo(ownerNickname);
+      Home home = homeRepository.findById(id);
+      home.setName(name);
+      home.setSize(size);
+      home.setNbRooms(nbRooms);
+      home.setOwner(newOwner);
+      homeRepository.save(home);
+    } catch (Exception ex) {
+      return "Error updating the home: " + ex.toString();
+    }
+    return "Home succesfully updated !";
   }
 
   /**
-   * Delete the home.
+   * Delete the home if exists.
    *
    * @param id the id of the home to delete
    */
-  public void deleteHome(Long id) {
-    homeRepository.deleteById(id);
+  public String deleteHome(Long id) {
+    if (homeRepository.existsById(id)) {
+      try {
+        Home home = homeRepository.findById(id);
+        homeRepository.delete(home);
+      } catch (Exception ex) {
+        return "Error deleting the home: " + ex.toString();
+      }
+      return "Home succesfully updated !";
+    }
+    return "Home doesn't exist !";
   }
 }

@@ -28,6 +28,14 @@ public class Home {
   }
 
   /**
+   * Home constructor with Id.
+   */
+  public Home(Long id) {
+    super();
+    this.id = id;
+  }
+
+  /**
    * Home constructor with paramaters.
    *
    * @param name    the name

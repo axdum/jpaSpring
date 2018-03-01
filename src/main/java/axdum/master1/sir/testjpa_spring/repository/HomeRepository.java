@@ -16,6 +16,14 @@ public interface HomeRepository extends JpaRepository<Home, Integer> {
   List<Home> findByName(String name);
 
   /**
+   * Find homes by owner pseudo.
+   *
+   * @param nickname owner pseudo.
+   * @return the matching homes list.
+   */
+  List<Home> findHomesByOwner_Pseudo(String nickname);
+
+  /**
    * Find a home by Id.
    *
    * @param id the Id of the home to find
@@ -29,4 +37,11 @@ public interface HomeRepository extends JpaRepository<Home, Integer> {
    * @param id the Id of the home to delete
    */
   void deleteById(Long id);
+
+  /**
+   * Check home exists by Id.
+   *
+   * @param id the Id of the home
+   */
+  boolean existsById(Long id);
 }

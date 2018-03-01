@@ -36,8 +36,8 @@ public class SwaggerConfig {
    */
   private ApiInfo apiInfo() {
     return new ApiInfoBuilder()
-            .title("axdum API")
-            .description("Access users data")
+            .title("API Documentation")
+            .description("Access, Create, Update, Delete user data.")
             .version("1.0")
             .build();
   }

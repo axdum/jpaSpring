@@ -18,7 +18,7 @@ public class UserService {
   /**
    * Populate Database.
    */
-  public void populate() {
+  public String populate() {
     // Personnes
     User axelD = new User("axdum", "Axel", "Dumont", "axel.dumont3@gmail.com");
     User elisaD = new User("lisou", "Elisa", "Dumont", "lisou@gmail.com");
@@ -74,10 +74,14 @@ public class UserService {
     elisaD.addFriend(claraD);
     claraD.addFriend(elisaD);
 
-    this.addUser(elisaD);
-    this.addUser(claraD);
-    this.addUser(axelD);
-
+    try {
+      userRepository.save(elisaD);
+      userRepository.save(axelD);
+      userRepository.save(claraD);
+    } catch (Exception ex) {
+      return "Error populating the database: " + ex.toString();
+    }
+    return "Database succesfully populated !";
   }
 
   /**
@@ -100,6 +104,16 @@ public class UserService {
   }
 
   /**
+   * Get the user matching the mail.
+   *
+   * @param mail the mail of user
+   * @return the user
+   */
+  public User getUserByMail(String mail) {
+    return userRepository.findUserByMail(mail);
+  }
+
+  /**
    * Get the user matching the id.
    *
    * @param id the id of user
@@ -110,30 +124,64 @@ public class UserService {
   }
 
   /**
-   * Create a new User.
+   * Create an user.
    *
-   * @param user the new user
+   * @param pseudo    the pseudo
+   * @param firstname the firstname
+   * @param name      the name
+   * @param mail      the mail adress
+   * @return user created or not
    */
-  public void addUser(User user) {
-    userRepository.save(user);
+  public String createUser(String pseudo, String firstname, String name, String mail) {
+    try {
+      User user = new User(pseudo, firstname, name, mail);
+      userRepository.save(user);
+    } catch (Exception ex) {
+      return "Error creating the user: " + ex.toString();
+    }
+    return "User succesfully created !";
+  }
+
+
+  /**
+   * Update an user.
+   *
+   * @param id        the Id
+   * @param pseudo    the new pseudo
+   * @param firstname the new firstname
+   * @param name      the new name
+   * @param mail      the new mail adress
+   * @return user updated or not
+   */
+  public String updateUser(Long id, String pseudo, String firstname, String name, String mail) {
+    try {
+      User user = userRepository.findById(id);
+      user.setPseudo(pseudo);
+      user.setFirstName(firstname);
+      user.setName(name);
+      user.setMail(mail);
+      userRepository.save(user);
+    } catch (Exception ex) {
+      return "Error updating the user: " + ex.toString();
+    }
+    return "User succesfully updated !";
   }
 
   /**
-   * Update the user.
-   *
-   * @param id   the id of the user to update
-   * @param user the user to update
-   */
-  public void updateUser(Long id, User user) {
-    userRepository.save(user);
-  }
-
-  /**
-   * Delete the user.
+   * Delete the user if exists.
    *
    * @param id the id of the user to delete
    */
-  public void deleteUser(Long id) {
-    userRepository.deleteById(id);
+  public String deleteUser(Long id) {
+    if (userRepository.existsById(id)) {
+      try {
+        User user = userRepository.findById(id);
+        userRepository.delete(user);
+      } catch (Exception ex) {
+        return "Error deleting the user: " + ex.toString();
+      }
+      return "User succesfully updated !";
+    }
+    return "User doesn't exist !";
   }
 }
