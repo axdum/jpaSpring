@@ -3,7 +3,7 @@
 School project : SIR TP2-4 Java Backend (JPA, REST API)<br><br>
 <b>Concept</b> : social network application that allows you to compare your electricity consumption with your friends, inspired by Opower.<br>
 <br><b>DONE</b> : Rest API to access users data.<br>
-<b>TO DO </b>: Rest UPDATE/CREATE/DELETE methods to debugg and web interface.
+<b>TO DO </b>: DELETE methods to debugg (user) and web interface.
 <h2>Installation</h2>
 <ul>
 <li>Import as a Maven Project</li>
