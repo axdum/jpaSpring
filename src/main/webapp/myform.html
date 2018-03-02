@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center mb-5">Test JPA</h2>
+            <hr class="mb-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-outline-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0">Search...</h3>
+                        </div>
+                        <div class="card-body">
+                            <form Method="POST" Action="/UserInfo">
+                                <div class="form-group">
+                                    <label for="pseudoInput">Nickname</label> <input type="text"
+                                                                                     class="form-control"
+                                                                                     id="pseudoInput"
+                                                                                     aria-describedby="pseudoHelp"
+                                                                                     placeholder="Nickname..."
+                                                                                     name="pseudo">
+                                    <small id="pseudoHelp"
+                                           class="form-text text-muted">Search a person's data
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

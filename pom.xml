@@ -7,7 +7,7 @@
     <groupId>axdum.master1.sir</groupId>
     <artifactId>testjpa_spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>testjpa_spring</name>
     <description>Demo project for Spring Boot</description>

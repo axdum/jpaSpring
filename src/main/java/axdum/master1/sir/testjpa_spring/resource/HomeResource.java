@@ -56,7 +56,7 @@ public class HomeResource {
   @RequestMapping(
           value = "/create",
           method = RequestMethod.POST,
-          params = {"name", "size", "nbrooms", "ownerNickname"})
+          params = {"name", "size", "nbRooms", "ownerNickname"})
   @ResponseBody
   public void createHome(String name, int size, int nbRooms, String ownerNickname) {
     homeService.createHome(name, size, nbRooms, ownerNickname);

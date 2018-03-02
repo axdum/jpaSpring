@@ -41,7 +41,7 @@ public class ElectronicDeviceResource {
    * @return the Heater
    */
   @GetMapping("/{name}")
-  public List<ElectronicDevice> getHeater(@PathVariable("name") String name) {
+  public List<ElectronicDevice> getElectronicDeviceByName(@PathVariable("name") String name) {
     return electronicDeviceService.getElectronicDeviceByName(name);
   }
 
