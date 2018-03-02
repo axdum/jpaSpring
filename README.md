@@ -1,4 +1,5 @@
 # testjpa_spring
+## JPA, REST API, Hibernate, MySQL, Spring Boot..
 ## Description
 School project : SIR TP2-4 Java Backend (JPA, REST API)<br><br>
 Social network application that allows you to compare your electricity consumption with your friends, inspired by Opower.<br><br>
