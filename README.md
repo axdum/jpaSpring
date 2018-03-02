@@ -21,3 +21,5 @@ Once the service is up and running the documentation of the REST API can be acce
     
 * API documentation JSON [http://localhost:8080/v2/api-docs/](http://localhost:8080/v2/api-docs)
 * API documentation WEB UI [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+Generate Javadoc and reports ```mvn site```
