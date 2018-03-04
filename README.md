@@ -12,9 +12,9 @@ Social network application that allows you to compare your electricity consumpti
     
 2. Build with Maven ```mvn clean install```  
     
-3. Change directory to ```../testjpa_spring/target/```
+3. Change directory to ```../jpaSpring/target/```
      
-4. Execute in the terminal ```java -jar testjpa_spring-0.0.1-SNAPSHOT.jar``` 
+4. Execute in the terminal ```java -jar testjpa_spring-0.0.1-SNAPSHOT.war``` 
     
 Alternatively run ```mvn spring-boot:run``` from command line or IDE or execute *axdum.master1.sir.testjpa_spring.TestjpaSpringApplication.main()* from within IDE.
 
