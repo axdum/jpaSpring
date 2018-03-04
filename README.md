@@ -6,6 +6,8 @@ Social network application that allows you to compare your electricity consumpti
 <br><b>DONE</b> : Rest API to access users data.<br>
 <img src="https://user-images.githubusercontent.com/31796081/36879851-fa103886-1dc5-11e8-8575-b6e5c164ed1f.png">
 ## Installation
+0. Download and unzip project (you can remove -master in folder name).
+
 1. Create database (name : jpaspring or open the `application.properties` file and set your own configurations for the
        MySQL database connection)
     
