@@ -1,4 +1,4 @@
-# testjpa_spring
+# jpaSpring
 ## JPA, REST API, Hibernate, MySQL, Spring Boot..
 ## Description
 School project : SIR TP2-4 Java Backend<br><br>
