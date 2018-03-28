@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface ElectronicDeviceRepository extends JpaRepository<ElectronicDevice, Integer> {
+public interface ElectronicDeviceRepository extends JpaRepository<ElectronicDevice, Long> {
   /**
    * Find electronic devices by name.
    *
@@ -20,7 +20,7 @@ public interface ElectronicDeviceRepository extends JpaRepository<ElectronicDevi
    * @param id the Id of the electronic device to find
    * @return the matching electronic device
    */
-  ElectronicDevice findById(Long id);
+  ElectronicDevice findOne(Long id);
 
   /**
    * Check if the electronic device exists by Id.

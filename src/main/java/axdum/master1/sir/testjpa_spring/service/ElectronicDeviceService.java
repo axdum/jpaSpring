@@ -32,7 +32,7 @@ public class ElectronicDeviceService {
    * @return the ElectronicDevice
    */
   public ElectronicDevice getElectronicDeviceById(Long id) {
-    return electronicDeviceRepository.findById(id);
+    return electronicDeviceRepository.findOne(id);
   }
 
   /**
@@ -79,7 +79,7 @@ public class ElectronicDeviceService {
   public String updateElectronicDevice(Long id, String name, Double hourOnPerDay, int dayOnPerYear, int watts, String nickname) {
     try {
       User owner = userRepository.findFirstByPseudo(nickname);
-      ElectronicDevice electronicDevice = electronicDeviceRepository.findById(id);
+      ElectronicDevice electronicDevice = electronicDeviceRepository.findOne(id);
       electronicDevice.setName(name);
       electronicDevice.sethourOnPerDay(hourOnPerDay);
       electronicDevice.setdayOnPerYear(dayOnPerYear);
@@ -100,7 +100,7 @@ public class ElectronicDeviceService {
   public String deleteElectronicDevice(Long id) {
     if (electronicDeviceRepository.existsById(id)) {
       try {
-        ElectronicDevice electronicDevice = electronicDeviceRepository.findById(id);
+        ElectronicDevice electronicDevice = electronicDeviceRepository.findOne(id);
         electronicDeviceRepository.delete(electronicDevice);
       } catch (Exception ex) {
         return "Error deleting the electronic device: " + ex.toString();

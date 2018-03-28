@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface HomeRepository extends JpaRepository<Home, Integer> {
+public interface HomeRepository extends JpaRepository<Home, Long> {
   /**
    * Find homes by name.
    *
@@ -28,7 +28,7 @@ public interface HomeRepository extends JpaRepository<Home, Integer> {
    * @param id the Id of the home to find
    * @return the matching home
    */
-  Home findById(Long id);
+  Home findOne(Long id);
 
   /**
    * Check if home exists by Id.

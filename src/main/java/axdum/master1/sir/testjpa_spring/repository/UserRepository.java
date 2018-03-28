@@ -4,7 +4,7 @@ import axdum.master1.sir.testjpa_spring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
   /**
    * Find an user by his nickname.
    *
@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
    * @param id the Id of the user to find
    * @return the matching user
    */
-  User findById(Long id);
+  User findOne(Long id);
 
   /**
    * Find an user by Mail.

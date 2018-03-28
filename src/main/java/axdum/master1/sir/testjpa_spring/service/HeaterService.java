@@ -42,7 +42,7 @@ public class HeaterService {
    * @return the Heater
    */
   public Heater getHeaterById(Long id) {
-    return heaterRepository.findById(id);
+    return heaterRepository.findOne(id);
   }
 
   /**
@@ -56,7 +56,7 @@ public class HeaterService {
    */
   public String createHeater(String name, Double hourOnPerDay, int dayOnPerYear, int watts, Long homeId) {
     try {
-      Home home = homeRepository.findById(homeId);
+      Home home = homeRepository.findOne(homeId);
       Heater heater = new Heater(name, hourOnPerDay, dayOnPerYear, watts, home);
       homeRepository.save(home);
     } catch (Exception ex) {
@@ -78,8 +78,8 @@ public class HeaterService {
    */
   public String updateHeater(Long id, String name, Double hourOnPerDay, int dayOnPerYear, int watts, Long homeId) {
     try {
-      Home home = homeRepository.findById(homeId);
-      Heater heater = heaterRepository.findById(id);
+      Home home = homeRepository.findOne(homeId);
+      Heater heater = heaterRepository.findOne(id);
       heater.setName(name);
       heater.sethourOnPerDay(hourOnPerDay);
       heater.setdayOnPerYear(dayOnPerYear);
@@ -100,7 +100,7 @@ public class HeaterService {
   public String deleteHeater(Long id) {
     if (heaterRepository.existsById(id)) {
       try {
-        Heater heater = heaterRepository.findById(id);
+        Heater heater = heaterRepository.findOne(id);
         heaterRepository.delete(heater);
       } catch (Exception ex) {
         return "Error deleting the heater: " + ex.toString();

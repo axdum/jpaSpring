@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface HeaterRepository extends JpaRepository<Heater, Integer> {
+public interface HeaterRepository extends JpaRepository<Heater, Long> {
   /**
    * Find heater devices by name.
    *
@@ -20,7 +20,7 @@ public interface HeaterRepository extends JpaRepository<Heater, Integer> {
    * @param id the Id of the heater to find
    * @return the matching heater
    */
-  Heater findById(Long id);
+  Heater findOne(Long id);
 
   /**
    * Delete a heater by Id.
