@@ -20,7 +20,7 @@ public interface HeaterRepository extends JpaRepository<Heater, Long> {
    * @param id the Id of the heater to find
    * @return the matching heater
    */
-  Heater findOne(Long id);
+  Heater findOneById(Long id);
 
   /**
    * Delete a heater by Id.

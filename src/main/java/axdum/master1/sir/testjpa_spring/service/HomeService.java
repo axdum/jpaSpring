@@ -42,7 +42,7 @@ public class HomeService {
    * @return the home
    */
   public Home getHomeById(Long id) {
-    return homeRepository.findOne(id);
+    return homeRepository.findOneById(id);
   }
 
   /**
@@ -78,7 +78,7 @@ public class HomeService {
   public String updateHome(Long id, String name, int size, int nbRooms, String ownerNickname) {
     try {
       User newOwner = userRepository.findFirstByPseudo(ownerNickname);
-      Home home = homeRepository.findOne(id);
+      Home home = homeRepository.findOneById(id);
       home.setName(name);
       home.setSize(size);
       home.setNbRooms(nbRooms);
@@ -98,7 +98,7 @@ public class HomeService {
   public String deleteHome(Long id) {
     if (homeRepository.existsById(id)) {
       try {
-        Home home = homeRepository.findOne(id);
+        Home home = homeRepository.findOneById(id);
         homeRepository.delete(home);
       } catch (Exception ex) {
         return "Error deleting the home: " + ex.toString();

@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
    * @param id the Id of the user to find
    * @return the matching user
    */
-  User findOne(Long id);
+  User findOneById(Long id);
 
   /**
    * Find an user by Mail.

@@ -20,7 +20,7 @@ public interface ElectronicDeviceRepository extends JpaRepository<ElectronicDevi
    * @param id the Id of the electronic device to find
    * @return the matching electronic device
    */
-  ElectronicDevice findOne(Long id);
+  ElectronicDevice findOneById(Long id);
 
   /**
    * Check if the electronic device exists by Id.

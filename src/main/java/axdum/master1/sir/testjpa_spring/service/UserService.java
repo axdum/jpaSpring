@@ -120,7 +120,7 @@ public class UserService {
    * @return the user
    */
   public User getUserById(Long id) {
-    return userRepository.findOne(id);
+    return userRepository.findOneById(id);
   }
 
   /**
@@ -155,7 +155,7 @@ public class UserService {
    */
   public String updateUser(Long id, String pseudo, String firstname, String name, String mail) {
     try {
-      User user = userRepository.findOne(id);
+      User user = userRepository.findOneById(id);
       user.setPseudo(pseudo);
       user.setFirstName(firstname);
       user.setName(name);
@@ -175,7 +175,7 @@ public class UserService {
   public String deleteUser(Long id) {
     if (userRepository.existsById(id)) {
       try {
-        User user = userRepository.findOne(id);
+        User user = userRepository.findOneById(id);
         userRepository.delete(user);
       } catch (Exception ex) {
         return "Error deleting the user: " + ex.toString();

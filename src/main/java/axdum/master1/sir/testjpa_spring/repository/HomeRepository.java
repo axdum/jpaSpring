@@ -28,7 +28,7 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
    * @param id the Id of the home to find
    * @return the matching home
    */
-  Home findOne(Long id);
+  Home findOneById(Long id);
 
   /**
    * Check if home exists by Id.
